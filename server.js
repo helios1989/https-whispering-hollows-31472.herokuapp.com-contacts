@@ -51,6 +51,10 @@ app.get("/api/contacts", function(req, res) {
   });
 });
 
+app.get("/api/contacts1", function(req, res) {
+  res.status('hello world');
+});
+
 app.post("/api/contacts", function(req, res) {
   var newContact = req.body;
 
