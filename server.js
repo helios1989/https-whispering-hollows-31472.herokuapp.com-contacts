@@ -7,7 +7,11 @@ var CONTACTS_COLLECTION = "contacts";
 
 var app = express();
 app.use(bodyParser.json());
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
+// Rest of server.js code below
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 process.env.MONGODB_URI = 'mongodb://vergel:vergel@ds121622.mlab.com:21622/contacts';
