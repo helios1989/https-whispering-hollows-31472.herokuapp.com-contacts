@@ -21,15 +21,17 @@ export class ContactListComponent implements OnInit {
      this.contactService
       .getContacts()
       .then((contacts: Contact[]) => {
-        this.contacts = contacts.map((contact) => {
-          if (!contact.phone) {
-            contact.phone = {
-              mobile: '',
-              work: ''
+        if (contacts) {
+          this.contacts = contacts.map((contact) => {
+            if (!contact.phone) {
+              contact.phone = {
+                mobile: '',
+                work: ''
+              }
             }
-          }
-          return contact;
-        });
+            return contact;
+          });
+        }
       });
   }
 
