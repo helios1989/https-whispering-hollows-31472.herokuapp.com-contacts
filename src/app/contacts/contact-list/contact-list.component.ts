@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
+import { ContactFriend } from '../contact-friend';
 import { ContactService } from '../contact.service';
 import { ContactDetailsComponent } from '../contact-details/contact-details.component';
 
@@ -11,13 +12,27 @@ import { ContactDetailsComponent } from '../contact-details/contact-details.comp
 })
 
 export class ContactListComponent implements OnInit {
-
+  contactFriends: ContactFriend[]
   contacts: Contact[]
   selectedContact: Contact
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit() {
+        this.contactService.
+      getFriends()
+      .then((contactFriend: ContactFriend[]) => {
+      if (contactFriend) {
+        this.contactFriends = contactFriend.map((contactFriend) => {
+          if(!contactFriend.friend) {
+            console.log('no contact')
+          }
+            console.log(contactFriend);
+            return contactFriend;
+          });
+        }
+      });
+
      this.contactService
       .getContacts()
       .then((contacts: Contact[]) => {

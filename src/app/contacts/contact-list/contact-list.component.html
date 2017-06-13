@@ -8,6 +8,11 @@
         [class.active]="contact === selectedContact">
         {{contact.name}}
       </li>
+      <li class="list-group-item"
+        *ngFor="let cf of contactFriends">
+        {{cf.name}}
+      </li>
+
     </ul>
     <button class="btn btn-warning" (click)="createNewContact()">New</button>
   </div>

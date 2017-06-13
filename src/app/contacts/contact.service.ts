@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Contact } from './contact';
+import { ContactFriend } from './contact-friend';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ContactService {
     private contactsUrl = '/api/contacts';
+    private contactFriendUrl = '/api/friends';
 
     constructor (private http: Http) {}
+
+    getFriends(): Promise<ContactFriend[]> {
+      return this.http.get(this.contactFriendUrl)
+                  .toPromise()
+                  .then(response => response.json() as ContactFriend[])
+                  .catch(this.handleError);
+    }
 
     // get("/api/contacts")
     getContacts(): Promise<Contact[]> {
